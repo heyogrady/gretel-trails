@@ -44,7 +44,7 @@ Gretel::Trails.class_eval do
   end
 end
 
-Gretel::Renderer.class_eval do
+Gretel::Renderer::LinkCollection.class_eval do
   # Moves the trail from the querystring into a data attribute.
   def breadcrumb_link_to_with_hidden_trail(name, url, options = {})
     if url.include?("#{Gretel::Trails.trail_param}=")
