@@ -18,13 +18,13 @@ class RedisStoreTest < ActiveSupport::TestCase
   end
 
   test "encoding" do
-    assert_equal "684c211441e72225cee89477a2d1f59e657c9e26",
+    assert_equal "cec64656f70239c6e7dc3470bcd383d573d34e12",
                  Gretel::Trails.encode(@links.map { |key, text, url| Gretel::Link.new(key, text, url) })
   end
 
   test "decoding" do
     Gretel::Trails.encode(@links.map { |key, text, url| Gretel::Link.new(key, text, url) })
-    decoded = Gretel::Trails.decode("684c211441e72225cee89477a2d1f59e657c9e26")
+    decoded = Gretel::Trails.decode("cec64656f70239c6e7dc3470bcd383d573d34e12")
     assert_equal @links, decoded.map { |link| [link.key, link.text, link.url] }
     assert_equal [false, true, false], decoded.map { |link| link.text.html_safe? }
   end

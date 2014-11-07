@@ -15,12 +15,12 @@ class UrlStoreTest < ActiveSupport::TestCase
   end
 
   test "encoding" do
-    assert_equal "5543214e6d7bbc3ba5209b2362cd7513d500f61b_W1sicm9vdCIsIkhvbWUiLDAsIi8iXSxbInN0b3JlIiwiU3RvcmUgPGI-VGVzdDwvYj4iLDEsIi9zdG9yZSJdLFsic2VhcmNoIiwiU2VhcmNoIiwwLCIvc3RvcmUvc2VhcmNoP3E9dGVzdCJdXQ==",
+    assert_equal "9680209e1942672b57009a385c3344bbb399ff7f_W1sicm9vdCIsIkhvbWUiLDAsIi8iXSxbInN0b3JlIiwiU3RvcmUgXHUwMDNDYlx1MDAzRVRlc3RcdTAwM0MvYlx1MDAzRSIsMSwiL3N0b3JlIl0sWyJzZWFyY2giLCJTZWFyY2giLDAsIi9zdG9yZS9zZWFyY2g_cT10ZXN0Il1d",
                  Gretel::Trails.encode(@links.map { |key, text, url| Gretel::Link.new(key, text, url) })
   end
 
   test "decoding" do
-    decoded = Gretel::Trails.decode("5543214e6d7bbc3ba5209b2362cd7513d500f61b_W1sicm9vdCIsIkhvbWUiLDAsIi8iXSxbInN0b3JlIiwiU3RvcmUgPGI-VGVzdDwvYj4iLDEsIi9zdG9yZSJdLFsic2VhcmNoIiwiU2VhcmNoIiwwLCIvc3RvcmUvc2VhcmNoP3E9dGVzdCJdXQ==")
+    decoded = Gretel::Trails.decode("9680209e1942672b57009a385c3344bbb399ff7f_W1sicm9vdCIsIkhvbWUiLDAsIi8iXSxbInN0b3JlIiwiU3RvcmUgXHUwMDNDYlx1MDAzRVRlc3RcdTAwM0MvYlx1MDAzRSIsMSwiL3N0b3JlIl0sWyJzZWFyY2giLCJTZWFyY2giLDAsIi9zdG9yZS9zZWFyY2g_cT10ZXN0Il1d")
     assert_equal @links, decoded.map { |link| [link.key, link.text, link.url] }
     assert_equal [false, true, false], decoded.map { |link| link.text.html_safe? }
   end
