@@ -17,9 +17,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^test/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "gretel", ">= 3.0.0.beta6"
+  spec.add_dependency "gretel", ">= 3.0"
   spec.add_dependency "rails", ">= 3.2.0"
-  spec.add_development_dependency "rails", "~> 3.2.13"
+  spec.add_development_dependency "therubyracer"
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "rake"

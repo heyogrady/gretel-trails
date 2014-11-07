@@ -16,4 +16,4 @@ gem "coffee-rails"
 
 # To use debugger
 # gem 'debugger'
-gem "gretel", github: "lassebunk/gretel", branch: "3.0.0"
+gem "gretel", github: "lassebunk/gretel"
