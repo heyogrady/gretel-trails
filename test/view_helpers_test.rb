@@ -19,7 +19,7 @@ class ViewHelpersTest < ActionView::TestCase
     breadcrumb :recent_products
 
     assert_equal %{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <a href="/about">About</a> &rsaquo; <span class="current">Recent products</span></div>},
-                 breadcrumbs
+                 breadcrumbs.to_s
   end
 
   test "different trail param" do
@@ -28,7 +28,7 @@ class ViewHelpersTest < ActionView::TestCase
     breadcrumb :recent_products
 
     assert_equal %{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <a href="/about">About</a> &rsaquo; <span class="current">Recent products</span></div>},
-                 breadcrumbs
+                 breadcrumbs.to_s
   end
 
   test "unknown trail" do
@@ -36,6 +36,6 @@ class ViewHelpersTest < ActionView::TestCase
     breadcrumb :recent_products
 
     assert_equal %{<div class="breadcrumbs"><a href="/">Home</a> &rsaquo; <span class="current">Recent products</span></div>},
-                 breadcrumbs
+                 breadcrumbs.to_s
   end
 end
