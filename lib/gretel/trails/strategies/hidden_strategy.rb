@@ -69,6 +69,6 @@ ActionView::Base.class_eval do
   # View helper proxy to the breadcrumb renderer's breadcrumb_link_to that
   # automatically removes trails from URLs and adds them as data attributes.
   def breadcrumb_link_to(name, url, options = {})
-    gretel_renderer.breadcrumb_link_to(name, url, options)
+    gretel_renderer.render.breadcrumb_link_to(name, url, options)
   end unless method_defined?(:breadcrumb_link_to)
 end

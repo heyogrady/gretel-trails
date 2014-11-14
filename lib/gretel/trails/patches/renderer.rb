@@ -15,7 +15,7 @@ Gretel::Renderer.class_eval do
     @trail ||= begin
       transformed_links = links.dup
       if transform_current_path && transformed_links.any? && request
-        transformed_links.last.url = request.fullpath
+        transformed_links.last.url = request.original_url
       end
       Gretel::Trails.encode(transformed_links)
     end

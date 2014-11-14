@@ -8,19 +8,19 @@ class UrlStoreTest < ActiveSupport::TestCase
     Gretel::Trails::UrlStore.secret = "128107d341e912db791d98bbe874a8250f784b0a0b4dbc5d5032c0fc1ca7bda9c6ece667bd18d23736ee833ea79384176faeb54d2e0d21012898dde78631cdf1"
     
     @links = [
-      [:root, "Home", "/"],
+      [:root, "Home", "hhtp://home.local"],
       [:store, "Store <b>Test</b>".html_safe, "/store"],
       [:search, "Search", "/store/search?q=test"]
     ]
   end
 
   test "encoding" do
-    assert_equal "9680209e1942672b57009a385c3344bbb399ff7f_W1sicm9vdCIsIkhvbWUiLDAsIi8iXSxbInN0b3JlIiwiU3RvcmUgXHUwMDNDYlx1MDAzRVRlc3RcdTAwM0MvYlx1MDAzRSIsMSwiL3N0b3JlIl0sWyJzZWFyY2giLCJTZWFyY2giLDAsIi9zdG9yZS9zZWFyY2g_cT10ZXN0Il1d",
+    assert_equal "61625c6ffe014ce04888d5f98d5b5a86be4a94e4_W1sicm9vdCIsIkhvbWUiLDAsImhodHA6Ly9ob21lLmxvY2FsIl0sWyJzdG9yZSIsIlN0b3JlIFx1MDAzQ2JcdTAwM0VUZXN0XHUwMDNDL2JcdTAwM0UiLDEsIi9zdG9yZSJdLFsic2VhcmNoIiwiU2VhcmNoIiwwLCIvc3RvcmUvc2VhcmNoP3E9dGVzdCJdXQ==",
                  Gretel::Trails.encode(@links.map { |key, text, url| Gretel::Link.new(key, text, url) })
   end
 
   test "decoding" do
-    decoded = Gretel::Trails.decode("9680209e1942672b57009a385c3344bbb399ff7f_W1sicm9vdCIsIkhvbWUiLDAsIi8iXSxbInN0b3JlIiwiU3RvcmUgXHUwMDNDYlx1MDAzRVRlc3RcdTAwM0MvYlx1MDAzRSIsMSwiL3N0b3JlIl0sWyJzZWFyY2giLCJTZWFyY2giLDAsIi9zdG9yZS9zZWFyY2g_cT10ZXN0Il1d")
+    decoded = Gretel::Trails.decode("61625c6ffe014ce04888d5f98d5b5a86be4a94e4_W1sicm9vdCIsIkhvbWUiLDAsImhodHA6Ly9ob21lLmxvY2FsIl0sWyJzdG9yZSIsIlN0b3JlIFx1MDAzQ2JcdTAwM0VUZXN0XHUwMDNDL2JcdTAwM0UiLDEsIi9zdG9yZSJdLFsic2VhcmNoIiwiU2VhcmNoIiwwLCIvc3RvcmUvc2VhcmNoP3E9dGVzdCJdXQ==")
     assert_equal @links, decoded.map { |link| [link.key, link.text, link.url] }
     assert_equal [false, true, false], decoded.map { |link| link.text.html_safe? }
   end

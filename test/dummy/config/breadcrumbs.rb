@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :about do
-  link "About", about_path
+  link "About", about_url
 end
 
 crumb :category do |category|
