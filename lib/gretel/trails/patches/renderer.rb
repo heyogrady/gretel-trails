@@ -1,15 +1,4 @@
 Gretel::Renderer.class_eval do
-  # Loads parent links from trail if +params[:trail]+ is present.
-  def parent_links_for_with_trail(crumb)
-    if params[Gretel::Trails.trail_param].present?
-      Gretel::Trails.decode(params[Gretel::Trails.trail_param])
-    else
-      parent_links_for_without_trail(crumb)
-    end
-  end
-
-  alias_method_chain :parent_links_for, :trail
-
   # Returns encoded trail for the breadcrumb.
   def trail
     @trail ||= begin
@@ -29,3 +18,16 @@ Gretel::Renderer.class_eval do
 
   attr_writer :transform_current_path
 end
+
+module ParentLinksForWithTrail
+  # Loads parent links from trail if +params[:trail]+ is present.
+  def parent_links_for(crumb)
+    if params[Gretel::Trails.trail_param].present?
+      Gretel::Trails.decode(params[Gretel::Trails.trail_param])
+    else
+      super(crumb)
+    end
+  end
+end
+
+Gretel::Renderer.send :prepend, ParentLinksForWithTrail
