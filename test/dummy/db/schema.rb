@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -9,37 +8,34 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131016201943) do
+ActiveRecord::Schema.define(version: 20131016201943) do
 
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["slug"], name: "index_categories_on_slug"
   end
 
-  add_index "categories", ["slug"], :name => "index_categories_on_slug"
-
-  create_table "gretel_trails", :force => true do |t|
-    t.string   "key",        :limit => 40
-    t.text     "value"
+  create_table "gretel_trails", force: :cascade do |t|
+    t.string "key", limit: 40
+    t.text "value"
     t.datetime "expires_at"
+    t.index ["expires_at"], name: "index_gretel_trails_on_expires_at"
+    t.index ["key"], name: "index_gretel_trails_on_key", unique: true
   end
 
-  add_index "gretel_trails", ["expires_at"], :name => "index_gretel_trails_on_expires_at"
-  add_index "gretel_trails", ["key"], :name => "index_gretel_trails_on_key", :unique => true
-
-  create_table "products", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.integer "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["slug"], name: "index_products_on_slug"
   end
-
-  add_index "products", ["category_id"], :name => "index_products_on_category_id"
-  add_index "products", ["slug"], :name => "index_products_on_slug"
 
 end

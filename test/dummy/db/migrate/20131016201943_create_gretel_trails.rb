@@ -1,4 +1,4 @@
-class CreateGretelTrails < ActiveRecord::Migration
+class CreateGretelTrails < ActiveRecord::Migration[4.2]
   def change
     create_table :gretel_trails do |t|
       t.string :key, limit: 40
