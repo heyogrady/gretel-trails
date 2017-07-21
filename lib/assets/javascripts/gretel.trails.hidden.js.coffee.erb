@@ -18,11 +18,11 @@ removeTrailFromUrl()
 
 if Turbolinks?
   # Remove trail after page change
-  $(document).on "page:change", -> removeTrailFromUrl()
+  $(document).on "turbolinks:load", -> removeTrailFromUrl()
 
 # Add trails to querystring
 $ ->
-  $("body").on "click", "a[data-<%= Gretel::Trails::HiddenStrategy.data_attribute %>], <%= Gretel::Trails::HiddenStrategy.js_selector %>", ->
+  $(document).on "click", "a[data-<%= Gretel::Trails::HiddenStrategy.data_attribute %>], <%= Gretel::Trails::HiddenStrategy.js_selector %>", ->
     if trail = $(this).closest("[data-<%= Gretel::Trails::HiddenStrategy.data_attribute %>]").data("<%= Gretel::Trails::HiddenStrategy.data_attribute %>")
       href = $(this).attr("href")
       uri = new Gretel.Trails.Uri(href)
