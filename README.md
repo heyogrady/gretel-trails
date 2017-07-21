@@ -255,3 +255,5 @@ You are very welcome to contribute with bug fixes or new features. To contribute
 Follows [semantic versioning](http://semver.org/).
 
 Copyright (c) 2013 [Lasse Bunk](http://lassebunk.dk), released under the MIT license
+
+--
